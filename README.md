@@ -47,3 +47,9 @@ Dev side
 # Some cool pages to look at:
 1. https://wuhan2020.kaiyuanshe.cn/# - idk i saw it on github somewhere, dunno how to read tho but think its pretty good.
 2. https://www.gov.sg/article/help-speed-up-contact-tracing-with-tracetogether
+
+# Ways of working - this really solves merge conflicts 
+
+1. git checkout develop (hopefully already done this)
+2. git checkout -b feature/<feature-name>  for example -- git checkout -b feature/login_page
+3. then work on that branch, when read to merge, create a pull request into develop branch
