@@ -24,4 +24,9 @@ Dev side
 
 # Timeline:
 21 March 2020 - idea first found by YX 
+------
 21 June 2020 - Corona virus vaccine found and eradicated rendering app useless
+------
+
+# Some cool pages to look at:
+1. https://wuhan2020.kaiyuanshe.cn/# - idk i saw it on github somewhere, dunno how to read tho but think its pretty good.
