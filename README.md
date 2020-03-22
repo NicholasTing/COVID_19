@@ -54,3 +54,14 @@ Dev side
 1. git checkout develop (hopefully already done this)
 2. git checkout -b feature/<feature-name>  for example -- git checkout -b feature/login_page
 3. then work on that branch, when read to merge, create a pull request into develop branch
+
+# How to run
+
+1. git clone (then checkout develop or feature/featurename)
+2. cd secret_project
+3. npm i
+4. cd client 
+5. npm i
+6. cd ..
+7. npm run dev
+8. localhost:3000 should show hello world
