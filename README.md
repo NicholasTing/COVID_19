@@ -49,6 +49,7 @@ Dev side
 2. https://www.gov.sg/article/help-speed-up-contact-tracing-with-tracetogether
 
 # Ways of working - this really solves merge conflicts 
+## important that we git checkout develop first, then we git checkout our feature so the head is from develop
 
 1. git checkout develop (hopefully already done this)
 2. git checkout -b feature/<feature-name>  for example -- git checkout -b feature/login_page
