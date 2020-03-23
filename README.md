@@ -47,6 +47,7 @@ Dev side
 # Some cool pages to look at:
 1. https://wuhan2020.kaiyuanshe.cn/# - idk i saw it on github somewhere, dunno how to read tho but think its pretty good.
 2. https://www.gov.sg/article/help-speed-up-contact-tracing-with-tracetogether
+3. https://apps.who.int/iris/bitstream/handle/10665/185258/WHO_EVD_Guidance_Contact_15.1_eng.pdf;jsessionid=6F4EC111EA24985C6DCA28235D523CA2?sequence=1
 
 # Ways of working - this really solves merge conflicts 
 ## important that we git checkout develop first, then we git checkout our feature so the head is from develop
