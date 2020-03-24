@@ -21,8 +21,8 @@ export default class HomePage extends React.Component {
 
         Promise.all(
             [
-                await axios.get('https://corona.lmao.ninja/countries')
-                    .then(res => {this.setState({countries:res.data})}),
+                // await axios.get('https://corona.lmao.ninja/countries')
+                //     .then(res => {this.setState({countries:res.data})}),
                 await axios.get('https://corona.lmao.ninja/all')
                 .then(res=> {
                 this.setState(
