@@ -1,17 +1,17 @@
 // Setting up express
-var express = require('express');
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
 // const cookieSession = require('cookie-session'); // for cookies
 // const keys = require('./config/keys'); // for cookies
 // const passport = require('passport');
-var app = express();
+const app = express();
+const routes = require('./routes/app');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use('/', (req,res) => {
-    res.send("hello world");
-})
+// Using routes
+app.use(routes);
 
 const PORT = process.env.PORT || 5000;
 
