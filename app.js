@@ -1,14 +1,18 @@
 // Setting up express
-var express = require('express');
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
 // const cookieSession = require('cookie-session'); // for cookies
 // const keys = require('./config/keys'); // for cookies
 // const passport = require('passport');
-var app = express();
+const app = express();
+const routes = require('./routes/app');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+
+// Using routes
+app.use(routes);
 // app.use('/', (req,res) => {
 //     res.send("hello world");
 // })
@@ -24,6 +28,7 @@ if(process.env.NODE_ENV === 'production'){
     app.get('*', (req, res) =>{
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 })};
+
 
 const PORT = process.env.PORT || 5000;
 
