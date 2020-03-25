@@ -48,10 +48,13 @@ function createData(country,cases,recovered) {
 
 function descendingComparator(a, b, orderBy) {
 
-  if (b[orderBy] < a[orderBy]) {
+    console.log(a[orderBy]);
+    console.log(b[orderBy]);
+    console.log(a);
+  if (b[orderBy] <= a[orderBy]) {
     return -1;
   }
-  if (b[orderBy] > a[orderBy]) {
+  if (b[orderBy] >= a[orderBy]) {
     return 1;
   }
   return 0;
@@ -77,7 +80,7 @@ const headCells = [
   { id: 'countries', numeric: false, disablePadding: true, label: 'Countries' },
   { id: 'cases', numeric: true, disablePadding: false, label: 'Cases' },
   { id: 'recovered', numeric: true, disablePadding: false, label: 'Recovered' },
-//   { id: 'recovery', numeric: true, disablePadding: false, label: 'Recovery Percentage(%)' },
+  { id: 'recovery', numeric: true, disablePadding: false, label: 'Recovery Percentage(%)' },
 ];
 
 function EnhancedTableHead(props) {
@@ -334,7 +337,7 @@ export default function EnhancedTable(data) {
                       </TableCell>
                       <TableCell align="right">{row.cases}</TableCell>
                       <TableCell align="right">{row.recovered}</TableCell>
-                      {/* <TableCell align="right">{ row.recovery_percentage }</TableCell> */}
+                      <TableCell align="right">{row.recovery_percentage}</TableCell>
                       
                     </TableRow>
                   );
