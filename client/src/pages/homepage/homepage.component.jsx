@@ -4,6 +4,8 @@ import "./homepage.styles.scss";
 // import { ReactReduxContext } from "react-redux";
 import TableComponent from '../../components/table/TableComponent';
 import EnhancedTable from '../../components/sortedTable/sortedTableComponent';
+import BasicTextField from '../../components/mobileView/mobileViewComponent';
+
 import {
     BrowserView,
     MobileView,
@@ -59,9 +61,10 @@ class HomePage extends React.Component {
             <h3>Total cases: {this.state.cases}</h3>
             <h3>Total deaths: {this.state.deaths}</h3>
             <h3>Recovered cases: {this.state.recovered}</h3>
+            <BasicTextField />
             </div>
         }
-    
+
         return <div className="homepage">
             <h1>Corona Statistics</h1>
             <h3>Total cases: {this.state.cases}</h3>
