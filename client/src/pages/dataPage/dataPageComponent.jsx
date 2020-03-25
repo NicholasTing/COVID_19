@@ -1,5 +1,5 @@
 import React from "react";
-import "./homepage.styles.scss";
+// import "./homepage.styles.scss";
 // import axios from 'axios';
 // import { ReactReduxContext } from "react-redux";
 import TableComponent from '../../components/table/TableComponent';
@@ -16,7 +16,7 @@ import {
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-class HomePage extends React.Component {
+class DataPageComponent extends React.Component {
 
     state = {
         cases:'',
@@ -54,26 +54,14 @@ class HomePage extends React.Component {
             return <div>Loading ...</div>
         }
 
-        if(isMobile){
-           
-            return <div className="homepage">
+        return <div className="homepage">
             <h1>Corona Statistics</h1>
             <h3>Total cases: {this.state.cases}</h3>
             <h3>Total deaths: {this.state.deaths}</h3>
             <h3>Recovered cases: {this.state.recovered}</h3>
             <BasicTextField />
             </div>
-        }
 
-        return <div className="homepage">
-            <h1>Corona Statistics</h1>
-            <h3>Total cases: {this.state.cases}</h3>
-            <h3>Total deaths: {this.state.deaths}</h3>
-            <h3>Recovered cases: {this.state.recovered}</h3>
-            {/* <h2>Updated: {(this.state.updated)}</h2> */}
-            <TableComponent data={this.state.countries}/>
-            {/* <EnhancedTable /> */}
-        </div>;
     }
 }
 
@@ -81,4 +69,4 @@ function mapStateToProps({countries}) {
     return {countries};
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(DataPageComponent);

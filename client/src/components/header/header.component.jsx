@@ -13,8 +13,9 @@ const Header = () => (
       <Logo className="logo" />
     </LogoContainer>
     <OptionsContainer>
+      <OptionLink to='/dataPage'>DATA PAGE</OptionLink>
       <OptionLink to="/record">RECORD ACTIVITY</OptionLink>
-      <OptionLink to="/export">EXPORT DATA</OptionLink>
+      {/* <OptionLink to="/export">EXPORT DATA</OptionLink> */}
       <OptionLink to="/signin">SIGN IN</OptionLink>
     </OptionsContainer>
   </HeaderContainer>
