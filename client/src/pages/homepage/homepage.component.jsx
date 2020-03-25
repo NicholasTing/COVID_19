@@ -42,7 +42,8 @@ class HomePage extends React.Component {
         this.setState({
             cases: dataInView.cases,
             deaths: dataInView.deaths,
-            recovered: dataInView.recovered
+            recovered: dataInView.recovered,
+            updated: Date(dataInView.updated)
         })
 
         this.setState({loading:false})
@@ -57,21 +58,22 @@ class HomePage extends React.Component {
         if(isMobile){
            
             return <div className="homepage">
-            <h1>Corona Statistics</h1>
+            <h1>Covid-19 Statistics</h1>
             <h3>Total cases: {this.state.cases}</h3>
             <h3>Total deaths: {this.state.deaths}</h3>
             <h3>Recovered cases: {this.state.recovered}</h3>
             <BasicTextField />
+            <h6>Last updated: {this.state.updated}</h6>
             </div>
         }
 
         return <div className="homepage">
-            <h1>Corona Statistics</h1>
+            <h1>Covid-19 Statistics</h1>
             <h3>Total cases: {this.state.cases}</h3>
             <h3>Total deaths: {this.state.deaths}</h3>
             <h3>Recovered cases: {this.state.recovered}</h3>
-            {/* <h2>Updated: {(this.state.updated)}</h2> */}
             <TableComponent data={this.state.countries}/>
+            <h6>Last updated: {this.state.updated}</h6>
             {/* <EnhancedTable /> */}
         </div>;
     }
