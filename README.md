@@ -1,3 +1,6 @@
+# Website
+https://corona-statistics-2020.herokuapp.com/
+
 # secret_project 1.0
 Secret project to battle/track corona virus
 A webapp that allows users to record (as much as they can) their daily activities so as to facilitate contact tracing by reducing the issue of forgetfulness in contact tracing process.
@@ -66,3 +69,7 @@ Dev side
 6. cd ..
 7. npm run dev
 8. localhost:3000 should show hello world
+
+
+# Acknowledgement
+Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
