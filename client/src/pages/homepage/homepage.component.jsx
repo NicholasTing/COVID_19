@@ -4,6 +4,12 @@ import "./homepage.styles.scss";
 // import { ReactReduxContext } from "react-redux";
 import TableComponent from '../../components/table/TableComponent';
 import EnhancedTable from '../../components/sortedTable/sortedTableComponent';
+import {
+    BrowserView,
+    MobileView,
+    isBrowser,
+    isMobile
+  } from "react-device-detect";
 
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -44,6 +50,16 @@ class HomePage extends React.Component {
 
         if(this.state.loading){
             return <div>Loading ...</div>
+        }
+
+        if(isMobile){
+           
+            return <div className="homepage">
+            <h1>Corona Statistics</h1>
+            <h3>Total cases: {this.state.cases}</h3>
+            <h3>Total deaths: {this.state.deaths}</h3>
+            <h3>Recovered cases: {this.state.recovered}</h3>
+            </div>
         }
     
         return <div className="homepage">
