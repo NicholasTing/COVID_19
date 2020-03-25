@@ -25,9 +25,10 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 //   return { name, calories, fat, carbs, protein };
 // }
 
-function createData(country,cases,recovered) {
+function createData(country,cases, deaths, recovered) {
     var recovery_percentage = (recovered / cases);
-  return { country,cases,recovered, recovery_percentage };
+    var death_rate = (deaths / cases);
+  return { country,cases,recovered, deaths, death_rate, recovery_percentage };
 }
 
 // const rows = [
@@ -48,9 +49,6 @@ function createData(country,cases,recovered) {
 
 function descendingComparator(a, b, orderBy) {
 
-    console.log(a[orderBy]);
-    console.log(b[orderBy]);
-    console.log(a);
   if (b[orderBy] <= a[orderBy]) {
     return -1;
   }
@@ -79,8 +77,10 @@ function stableSort(array, comparator) {
 const headCells = [
   { id: 'countries', numeric: false, disablePadding: true, label: 'Countries' },
   { id: 'cases', numeric: true, disablePadding: false, label: 'Cases' },
+  { id: 'deaths', numeric: true, disablePadding: false, label: 'Deaths' },
   { id: 'recovered', numeric: true, disablePadding: false, label: 'Recovered' },
-  { id: 'recovery', numeric: true, disablePadding: false, label: 'Recovery Percentage(%)' },
+  { id: 'death_rate', numeric: true, disablePadding: false, label: 'Death Percentage(%)' },
+  { id: 'recovery_percentage', numeric: true, disablePadding: false, label: 'Recovery Percentage(%)' },
 ];
 
 function EnhancedTableHead(props) {
@@ -224,14 +224,13 @@ export default function EnhancedTable(data) {
     
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('recovery');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event, property) => {
-      console.log('handle sorting');
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
@@ -282,7 +281,7 @@ export default function EnhancedTable(data) {
 
   const initiateArray = () => {
     if (!rows.length){
-        data.data.map(x=> rows.push(createData(x.country, x.cases, x.recovered)));
+        data.data.map(x=> rows.push(createData(x.country, x.cases, x.deaths, x.recovered)));
     }
   }
 
@@ -325,7 +324,7 @@ export default function EnhancedTable(data) {
                       onClick={event => handleClick(event, row.country)}
                       role="checkbox"
                       aria-checked={isItemSelected}
-                      tabIndex={-1}
+                    //   tabIndex={-1}
                       key={row.country}
                       selected={isItemSelected}
                     >
@@ -336,8 +335,10 @@ export default function EnhancedTable(data) {
                         {row.country}
                       </TableCell>
                       <TableCell align="right">{row.cases}</TableCell>
+                      <TableCell align="right">{row.deaths}</TableCell>
                       <TableCell align="right">{row.recovered}</TableCell>
-                      <TableCell align="right">{row.recovery_percentage}</TableCell>
+                      <TableCell align="right">{(row.death_rate).toFixed(3)}</TableCell>
+                      <TableCell align="right">{ (row.recovery_percentage).toFixed(2)}</TableCell>
                       
                     </TableRow>
                   );

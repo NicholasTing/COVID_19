@@ -12,9 +12,9 @@ import { connect } from 'react-redux';
 
 import EnhancedTable from '../sortedTable/sortedTableComponent';
 
-function createData(country,cases,recovered) {
+function createData(country,cases, deaths, recovered) {
     var recovery_percentage = cases / recovered;
-  return { country,cases,recovered };
+  return { country,cases, deaths, recovered };
 }
 
 var rows = []
@@ -28,7 +28,7 @@ class TableComponent extends React.Component {
 
     async componentDidMount(){
         this.props.data.map(x=> 
-            rows.push(createData(x.country, x.cases, x.recovered)));
+            rows.push(createData(x.country, x.cases, x.deaths, x.recovered)));
         this.setState({loading:false});
     }
 
