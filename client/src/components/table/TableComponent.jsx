@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 // import { FormControl } from '@material-ui/core';
 
 function createData(country,cases,recovered) {
+    var recovery_percentage = cases / recovered;
   return { country,cases,recovered };
 }
 
@@ -22,7 +23,7 @@ class TableComponent extends React.Component {
         countries:[],
         loading: true,
     }
-    
+
     async componentDidMount(){
         this.props.data.map(x=> 
             rows.push(createData(x.country, x.cases, x.recovered)));
@@ -32,7 +33,7 @@ class TableComponent extends React.Component {
     getStyles(){
         makeStyles({
         table: {
-            minWidth: 650,
+            minWidth: 2000,
         },
         });
     }
@@ -51,6 +52,7 @@ class TableComponent extends React.Component {
               <TableCell>Country</TableCell>
               <TableCell align="right">Cases</TableCell>
               <TableCell align="right">Recovered</TableCell>
+              <TableCell align="right">Recovery Rate</TableCell>
            
             </TableRow>
           </TableHead>
@@ -62,6 +64,7 @@ class TableComponent extends React.Component {
                 </TableCell>
                 <TableCell align="right">{row.cases}</TableCell>
                 <TableCell align="right">{row.recovered}</TableCell>
+                <TableCell align="right">{ (row.recovered/row.cases * 100).toFixed(2)}%</TableCell>
               
               </TableRow>
             ))}
