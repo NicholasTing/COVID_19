@@ -3,7 +3,7 @@ import "./SignInAndSignUpPage.scss";
 
 const SignInAndSignUpPage = () => (
   <div className="SignInAndSignUpPage">
-      MORE FEATURES COMING SOON
+      SIGNUP - MORE FEATURES COMING SOON
 
   </div>
 );
