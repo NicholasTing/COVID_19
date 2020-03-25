@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
+import { FormControl } from '@material-ui/core';
 
 const useStyles = makeStyles({
   table: {
@@ -19,47 +20,69 @@ function createData(country,cases,recovered) {
   return { country,cases,recovered };
 }
 
-var rows = [];
+// async function getRows(){
+//   var countries = []
+//   await axios.get('https://corona.lmao.ninja/countries').then(res => { 
+//     countries = res.data;
+//     countries.map(x=> rows.push(createData(x.country, x.cases, x.recovered)));
+//   });
+// };
 
-async function getRows(){
+var rows = []
 
-  var countries = []
-  await axios.get('https://corona.lmao.ninja/countries').then(res => { 
-    countries = res.data;
-    countries.map(x=> rows.push(createData(x.country, x.cases, x.recovered)));
-  });
+export default class TableComponent extends React.Component { 
 
-}
+  state = {
+    countries:[],
+  }
 
-export default function TableComponent() {
+  constructor(props){
+    super(props);
+  }
 
-  const classes = useStyles();
-  getRows();  
+  async componentDidMount(){
+    await axios.get('https://corona.lmao.ninja/countries')
+    .then(res => {
+        this.setState({countries:res.data})});
+      this.state.countries.map(x=> rows.push(createData(x.country, x.cases, x.recovered)));
+  }
 
-  return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Country</TableCell>
-            <TableCell align="right">cases</TableCell>
-            <TableCell align="right">Recovered</TableCell>
-         
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.country}>
-              <TableCell component="th" scope="row">
-                {row.country}
-              </TableCell>
-              <TableCell align="right">{row.cases}</TableCell>
-              <TableCell align="right">{row.recovered}</TableCell>
-            
+  getStyles(){
+    makeStyles({
+      table: {
+        minWidth: 650,
+      },
+    });
+  }
+
+  render(){
+
+    return (
+      <TableContainer component={Paper}>
+        <Table className={this.getStyles.makeStyles} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Country</TableCell>
+              <TableCell align="right">cases</TableCell>
+              <TableCell align="right">Recovered</TableCell>
+           
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+          </TableHead>
+          <TableBody>
+            {rows.map(row => (
+              <TableRow key={row.country}>
+                <TableCell component="th" scope="row">
+                  {row.country}
+                </TableCell>
+                <TableCell align="right">{row.cases}</TableCell>
+                <TableCell align="right">{row.recovered}</TableCell>
+              
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
+
 }
