@@ -25,10 +25,11 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 //   return { name, calories, fat, carbs, protein };
 // }
 
-function createData(country,cases, deaths, recovered) {
+
+function createData(country,cases,todayCases, deaths, todayDeaths, recovered, active, critical, casesPerOneMillion, deathsPerOneMillion) {
     var recovery_percentage = (recovered / cases);
     var death_rate = (deaths / cases);
-  return { country,cases,recovered, deaths, death_rate, recovery_percentage };
+  return { country,cases, todayCases, deaths, todayDeaths, recovered, active, critical, casesPerOneMillion, deathsPerOneMillion, death_rate, recovery_percentage };
 }
 
 // const rows = [
@@ -77,8 +78,14 @@ function stableSort(array, comparator) {
 const headCells = [
   { id: 'countries', numeric: false, disablePadding: true, label: 'Countries' },
   { id: 'cases', numeric: true, disablePadding: false, label: 'Cases' },
+  { id: 'todayCases', numeric: true, disablePadding: false, label: 'Today Cases' },
   { id: 'deaths', numeric: true, disablePadding: false, label: 'Deaths' },
+  { id: 'todayDeaths', numeric: true, disablePadding: false, label: 'Today Deaths' },
   { id: 'recovered', numeric: true, disablePadding: false, label: 'Recovered' },
+  { id: 'active', numeric: true, disablePadding: false, label: 'Active' },
+  { id: 'critical', numeric: true, disablePadding: false, label: 'Critical' },
+  { id: 'casesPerOneMillion', numeric: true, disablePadding: false, label: 'Cases Per One Million' },
+  { id: 'deathsPerOneMillion', numeric: true, disablePadding: false, label: 'Deaths Per One Million' },
   { id: 'death_rate', numeric: true, disablePadding: false, label: 'Death Percentage' },
   { id: 'recovery_percentage', numeric: true, disablePadding: false, label: 'Recovery Percentage' },
 ];
@@ -282,8 +289,9 @@ export default function EnhancedTable(data) {
   const initiateArray = () => {
     if (!rows.length){
         // console.log(data.data);
-        data.data.map(x=> rows.push(createData(x.country, x.cases, x.deaths, x.recovered)));
+        data.data.map(x=> rows.push(createData(x.country, x.cases, x.todayCases, x.deaths, x.todayDeaths, x.recovered, x.active, x.critical, x.casesPerOneMillion, x.deathsPerOneMillion)));
     }
+    
   }
 
   initiateArray();
@@ -336,10 +344,17 @@ export default function EnhancedTable(data) {
                         {row.country}
                       </TableCell>
                       <TableCell align="right">{row.cases}</TableCell>
+                      <TableCell align="right">{row.todayCases}</TableCell>
                       <TableCell align="right">{row.deaths}</TableCell>
+                      <TableCell align="right">{row.todayDeaths}</TableCell>
                       <TableCell align="right">{row.recovered}</TableCell>
+                      <TableCell align="right">{row.active}</TableCell>
+                      <TableCell align="right">{row.critical}</TableCell>
+                      <TableCell align="right">{row.casesPerOneMillion}</TableCell>
+                      <TableCell align="right">{row.deathsPerOneMillion}</TableCell>
                       <TableCell align="right">{(row.death_rate).toFixed(3)}</TableCell>
                       <TableCell align="right">{ (row.recovery_percentage).toFixed(2)}</TableCell>
+
                       
                     </TableRow>
                   );
