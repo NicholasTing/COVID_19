@@ -3,6 +3,8 @@ import "./homepage.styles.scss";
 // import axios from 'axios';
 // import { ReactReduxContext } from "react-redux";
 import TableComponent from '../../components/table/TableComponent';
+import EnhancedTable from '../../components/sortedTable/sortedTableComponent';
+
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
@@ -51,6 +53,7 @@ class HomePage extends React.Component {
             <h3>Recovered cases: {this.state.recovered}</h3>
             {/* <h2>Updated: {(this.state.updated)}</h2> */}
             <TableComponent data={this.state.countries}/>
+            {/* <EnhancedTable /> */}
         </div>;
     }
 }

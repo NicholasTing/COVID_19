@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 // import { FormControl } from '@material-ui/core';
 
+import EnhancedTable from '../sortedTable/sortedTableComponent';
+
 function createData(country,cases,recovered) {
     var recovery_percentage = cases / recovered;
   return { country,cases,recovered };
@@ -45,32 +47,33 @@ class TableComponent extends React.Component {
     }
     
     return (
-      <TableContainer component={Paper}>
-        <Table className={this.getStyles.makeStyles} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Country</TableCell>
-              <TableCell align="right">Cases</TableCell>
-              <TableCell align="right">Recovered</TableCell>
-              <TableCell align="right">Recovery Rate</TableCell>
+        <EnhancedTable data={rows}></EnhancedTable>
+    //   <TableContainer component={Paper}>
+    //     <Table className={this.getStyles.makeStyles} aria-label="simple table">
+    //       <TableHead>
+    //         <TableRow>
+    //           <TableCell>Country</TableCell>
+    //           <TableCell align="right">Cases</TableCell>
+    //           <TableCell align="right">Recovered</TableCell>
+    //           <TableCell align="right">Recovery Rate</TableCell>
            
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map(row => (
-              <TableRow key={row.country}>
-                <TableCell component="th" scope="row">
-                  {row.country}
-                </TableCell>
-                <TableCell align="right">{row.cases}</TableCell>
-                <TableCell align="right">{row.recovered}</TableCell>
-                <TableCell align="right">{ (row.recovered/row.cases * 100).toFixed(2)}%</TableCell>
+    //         </TableRow>
+    //       </TableHead>
+    //       <TableBody>
+    //         {rows.map(row => (
+    //           <TableRow key={row.country}>
+    //             <TableCell component="th" scope="row">
+    //               {row.country}
+    //             </TableCell>
+    //             <TableCell align="right">{row.cases}</TableCell>
+    //             <TableCell align="right">{row.recovered}</TableCell>
+    //             <TableCell align="right">{ (row.recovered/row.cases * 100).toFixed(2)}%</TableCell>
               
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+    //           </TableRow>
+    //         ))}
+    //       </TableBody>
+    //     </Table>
+    //   </TableContainer>
     );
   }
 
