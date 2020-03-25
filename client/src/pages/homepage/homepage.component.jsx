@@ -26,8 +26,6 @@ class HomePage extends React.Component {
         await actions.fetchCountries().then(result=>rows.push(result));
         this.setState({countries:rows[0]});
 
-        console.log(rows[0]);
-
         // Fetch all Data
         const allData = []
         await actions.fetchAllData().then(result=> allData.push(result));

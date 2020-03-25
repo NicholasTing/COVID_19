@@ -79,8 +79,8 @@ const headCells = [
   { id: 'cases', numeric: true, disablePadding: false, label: 'Cases' },
   { id: 'deaths', numeric: true, disablePadding: false, label: 'Deaths' },
   { id: 'recovered', numeric: true, disablePadding: false, label: 'Recovered' },
-  { id: 'death_rate', numeric: true, disablePadding: false, label: 'Death Percentage(%)' },
-  { id: 'recovery_percentage', numeric: true, disablePadding: false, label: 'Recovery Percentage(%)' },
+  { id: 'death_rate', numeric: true, disablePadding: false, label: 'Death Percentage' },
+  { id: 'recovery_percentage', numeric: true, disablePadding: false, label: 'Recovery Percentage' },
 ];
 
 function EnhancedTableHead(props) {
@@ -228,7 +228,7 @@ export default function EnhancedTable(data) {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(50);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -281,6 +281,7 @@ export default function EnhancedTable(data) {
 
   const initiateArray = () => {
     if (!rows.length){
+        // console.log(data.data);
         data.data.map(x=> rows.push(createData(x.country, x.cases, x.deaths, x.recovered)));
     }
   }

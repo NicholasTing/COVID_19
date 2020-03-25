@@ -47,7 +47,7 @@ class TableComponent extends React.Component {
     }
     
     return (
-        <EnhancedTable data={rows}></EnhancedTable>
+        <EnhancedTable data={this.props.data}></EnhancedTable>
     //   <TableContainer component={Paper}>
     //     <Table className={this.getStyles.makeStyles} aria-label="simple table">
     //       <TableHead>
