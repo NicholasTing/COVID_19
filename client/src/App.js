@@ -9,6 +9,7 @@ import HomePage from "./pages/homepage/homepage.component";
 import SignInAndSignUpPage from "./pages/signInAndSignUp/signInAndSignUp.component";
 import ExportDataPage from "./pages/exportData/exportData.component";
 import RecordDataPage from "./pages/recordData/recordData.component";
+import DataPageComponent from "./pages/dataPage/dataPageComponent";
 import Header from "./components/header/header.component";
 
 class App extends React.Component {
@@ -33,9 +34,11 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/dataPage" component={DataPageComponent} />
           <Route exact path="/export" component={ExportDataPage} />
           <Route exact path="/record" component={RecordDataPage} />
           <Route exact path="/signin" component={SignInAndSignUpPage} />
+          
         </Switch>
       </div>
     );
