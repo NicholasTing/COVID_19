@@ -1,10 +1,16 @@
 import axios from 'axios';
-import { FETCH_COUNTRIES_DATA } from './types'
 
-// GET method for user
-export const fetchUser = () =>  async dispatch => {
+// Get method to fetch countries data
+export async function fetchCountries(){
 
     const res = await axios.get('https://corona.lmao.ninja/countries');
-	dispatch({type: FETCH_COUNTRIES_DATA, payload:res.data}); 
+    return res.data;
+};
+
+// Get method to fetch basic countries data
+export async function fetchAllData() {
+
+    const res = await axios.get('https://corona.lmao.ninja/all');
+	return res.data;
 	
 };

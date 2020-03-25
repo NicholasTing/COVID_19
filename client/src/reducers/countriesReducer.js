@@ -1,6 +1,6 @@
 import { FETCH_COUNTRIES_DATA } from '../actions/types';
 
-// Reducer to fetch user
+// Reducer to fetch countries
 export default function(state=null, action){
 
     switch(action.type){

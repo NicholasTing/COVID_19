@@ -1,9 +1,12 @@
 import React from "react";
 import "./homepage.styles.scss";
-import axios from 'axios';
-import { ReactReduxContext } from "react-redux";
+// import axios from 'axios';
+// import { ReactReduxContext } from "react-redux";
 import TableComponent from '../../components/table/TableComponent';
-export default class HomePage extends React.Component {
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+
+class HomePage extends React.Component {
 
     state = {
         cases:'',
@@ -11,38 +14,49 @@ export default class HomePage extends React.Component {
         recovered:'',
         updated:'',
         countries: [],
-    };
-    
-    constructor(props){
-        super(props);
+        loading: true
     };
 
     async componentDidMount(){
 
-        Promise.all([
-        await axios.get('https://corona.lmao.ninja/countries')
-        .then(res => {
-            this.setState({countries:res.data})
-        }),
-        await axios.get('https://corona.lmao.ninja/all')
-        .then(res=> {
-        this.setState(
-            {   cases:res.data.cases,
-                deaths:res.data.deaths,
-                recovered:res.data.recovered,
-                updated:res.data.updated
-            })
-        })])
+        // Fetch countries data
+        const rows = []
+        await actions.fetchCountries().then(result=>rows.push(result));
+        this.setState({countries:rows[0]});
+
+        // Fetch all Data
+        const allData = []
+        await actions.fetchAllData().then(result=> allData.push(result));
+        const dataInView = allData[0];
+   
+        this.setState({
+            cases: dataInView.cases,
+            deaths: dataInView.deaths,
+            recovered: dataInView.recovered
+        })
+
+        this.setState({loading:false})
     }
 
     render(){
+
+        if(this.state.loading){
+            return <div>Loading ...</div>
+        }
+    
         return <div className="homepage">
             <h1>Corona Statistics</h1>
             <h3>Total cases: {this.state.cases}</h3>
             <h3>Total deaths: {this.state.deaths}</h3>
             <h3>Recovered cases: {this.state.recovered}</h3>
             {/* <h2>Updated: {(this.state.updated)}</h2> */}
-            <TableComponent />
+            <TableComponent data={this.state.countries}/>
         </div>;
     }
 }
+
+function mapStateToProps({countries}) {
+    return {countries};
+}
+
+export default connect(mapStateToProps)(HomePage);

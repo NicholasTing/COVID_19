@@ -7,58 +7,42 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import axios from 'axios';
-import { FormControl } from '@material-ui/core';
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
+import { connect } from 'react-redux';
+// import { FormControl } from '@material-ui/core';
 
 function createData(country,cases,recovered) {
   return { country,cases,recovered };
 }
 
-// async function getRows(){
-//   var countries = []
-//   await axios.get('https://corona.lmao.ninja/countries').then(res => { 
-//     countries = res.data;
-//     countries.map(x=> rows.push(createData(x.country, x.cases, x.recovered)));
-//   });
-// };
-
 var rows = []
 
-export default class TableComponent extends React.Component { 
+class TableComponent extends React.Component { 
 
-  state = {
-    countries:[],
-  }
-
-  constructor(props){
-    super(props);
-  }
-
-  async componentDidMount(){
-    await axios.get('https://corona.lmao.ninja/countries')
-    .then(res => {
-        this.setState({countries:res.data})
-    });
-        this.state.countries.map(x=> 
+    state = {
+        countries:[],
+        loading: true,
+    }
+    
+    async componentDidMount(){
+        this.props.data.map(x=> 
             rows.push(createData(x.country, x.cases, x.recovered)));
+        this.setState({loading:false});
     }
 
-  getStyles(){
-    makeStyles({
-      table: {
-        minWidth: 650,
-      },
-    });
-  }
+    getStyles(){
+        makeStyles({
+        table: {
+            minWidth: 650,
+        },
+        });
+    }
 
   render(){
 
+    if (this.state.loading){
+        return <div>Loading.. </div>
+    }
+    
     return (
       <TableContainer component={Paper}>
         <Table className={this.getStyles.makeStyles} aria-label="simple table">
@@ -88,3 +72,9 @@ export default class TableComponent extends React.Component {
   }
 
 }
+
+function mapStateToProps({countries}) {
+    return {countries};
+}
+
+export default connect(mapStateToProps)(TableComponent);
