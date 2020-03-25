@@ -19,6 +19,11 @@ export default class HomePage extends React.Component {
 
     async componentDidMount(){
 
+        Promise.all([
+        await axios.get('https://corona.lmao.ninja/countries')
+        .then(res => {
+            this.setState({countries:res.data})
+        }),
         await axios.get('https://corona.lmao.ninja/all')
         .then(res=> {
         this.setState(
@@ -26,14 +31,11 @@ export default class HomePage extends React.Component {
                 deaths:res.data.deaths,
                 recovered:res.data.recovered,
                 updated:res.data.updated
-            }
-            )
-        })
+            })
+        })])
     }
 
     render(){
-        console.log('home page');
-        console.log(this.state.countries);
         return <div className="homepage">
             <h1>Corona Statistics</h1>
             <h3>Total cases: {this.state.cases}</h3>

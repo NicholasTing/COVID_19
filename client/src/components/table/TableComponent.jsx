@@ -43,9 +43,11 @@ export default class TableComponent extends React.Component {
   async componentDidMount(){
     await axios.get('https://corona.lmao.ninja/countries')
     .then(res => {
-        this.setState({countries:res.data})});
-      this.state.countries.map(x=> rows.push(createData(x.country, x.cases, x.recovered)));
-  }
+        this.setState({countries:res.data})
+    });
+        this.state.countries.map(x=> 
+            rows.push(createData(x.country, x.cases, x.recovered)));
+    }
 
   getStyles(){
     makeStyles({
@@ -63,7 +65,7 @@ export default class TableComponent extends React.Component {
           <TableHead>
             <TableRow>
               <TableCell>Country</TableCell>
-              <TableCell align="right">cases</TableCell>
+              <TableCell align="right">Cases</TableCell>
               <TableCell align="right">Recovered</TableCell>
            
             </TableRow>
