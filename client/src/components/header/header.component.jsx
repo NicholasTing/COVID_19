@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
-import { ReactComponent as Logo } from "../../assets/virus.svg";
+import { ReactComponent as Logo } from "../../assets/logo.svg";
 import {
   HeaderContainer,
   LogoContainer,
