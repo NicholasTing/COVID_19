@@ -1,3 +1,6 @@
+# Website
+https://corona-statistics-2020.herokuapp.com/
+
 # secret_project 1.0
 Secret project to battle/track corona virus
 A webapp that allows users to record (as much as they can) their daily activities so as to facilitate contact tracing by reducing the issue of forgetfulness in contact tracing process.
@@ -47,3 +50,26 @@ Dev side
 # Some cool pages to look at:
 1. https://wuhan2020.kaiyuanshe.cn/# - idk i saw it on github somewhere, dunno how to read tho but think its pretty good.
 2. https://www.gov.sg/article/help-speed-up-contact-tracing-with-tracetogether
+3. https://apps.who.int/iris/bitstream/handle/10665/185258/WHO_EVD_Guidance_Contact_15.1_eng.pdf;jsessionid=6F4EC111EA24985C6DCA28235D523CA2?sequence=1
+
+# Ways of working - this really solves merge conflicts 
+## important that we git checkout develop first, then we git checkout our feature so the head is from develop
+
+1. git checkout develop (hopefully already done this)
+2. git checkout -b feature/<feature-name>  for example -- git checkout -b feature/login_page
+3. then work on that branch, when read to merge, create a pull request into develop branch
+
+# How to run
+
+1. git clone (then checkout develop or feature/featurename)
+2. cd secret_project
+3. npm i
+4. cd client 
+5. npm i
+6. cd ..
+7. npm run dev
+8. localhost:3000 should show hello world
+
+
+# Acknowledgement
+Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
